@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Kulla Design</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+
+    .products-wrapper{
+      position:relative;
+    }
+
+    .products-menu{
+      position:absolute;
+      top:70px;
+      right:0;
+
+      width:900px;
+      padding:40px;
+
+      background:rgba(10,10,10,0.92);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:24px;
+
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+
+      display:block;
+
+      opacity:0;
+      transform:translateY(-12px);
+      pointer-events:none;
+
+      transition:0.28s ease;
+      z-index:999;
+    }
+
+    .products-menu.show{
+      opacity:1;
+      transform:translateY(0);
+      pointer-events:auto;
+    }
+
+    .products-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:40px;
+    }
+
+    .products-column h3{
+      color:#ff7a00;
+      font-size:15px;
+      margin-bottom:18px;
+      text-transform:uppercase;
+      letter-spacing:2px;
+    }
+
+    .products-column a{
+      display:block;
+      color:white;
+      text-decoration:none;
+      margin-bottom:12px;
+      transition:0.25s ease;
+      font-size:15px;
+    }
+
+    .products-column a:hover{
+      color:#ff7a00;
+      transform:translateX(4px);
+    }
+
+   
+    .materials-wrapper{
+      position:relative;
+    }
+
+    .materials-menu{
+      position:absolute;
+      top:70px;
+      right:0;
+
+      width:900px;
+      padding:40px;
+
+      background:rgba(10,10,10,0.92);
+      border:1px solid rgba(255,255,255,0.08);
+      border-radius:24px;
+
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+
+      display:block;
+
+      opacity:0;
+      transform:translateY(-12px);
+      pointer-events:none;
+
+      transition:0.28s ease;
+      z-index:999;
+    }
+
+    .materials-menu.show{
+      opacity:1;
+      transform:translateY(0);
+      pointer-events:auto;
+    }
+
+    .materials-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:40px;
+    }
+
+    .materials-column h3{
+      color:#ff7a00;
+      font-size:15px;
+      margin-bottom:18px;
+      text-transform:uppercase;
+      letter-spacing:2px;
+    }
+
+    .materials-column a{
+      display:block;
+      color:white;
+      text-decoration:none;
+      margin-bottom:12px;
+      transition:0.25s ease;
+      font-size:15px;
+    }
+
+    .materials-column a:hover{
+      color:#ff7a00;
+      transform:translateX(4px);
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg px-4">
+    <div class="container-fluid">
+
+      <div class="wallpaper-arrows">
+        <button id="prevBtn">❮</button>
+        <button id="nextBtn">❯</button>
+      </div>
+
+      <div class="logo-wrapper">
+
+        <input type="checkbox" id="menuToggle">
+
+        <label for="menuToggle" class="logo-btn">
+          <img src="logo.png" alt="Logo" class="me-2">
+        </label>
+
+        <div class="logo-menu">
+          <a href="ourstory.html">Our Story</a>
+          <a href="contact.html">Contact</a>
+          <a href="people.html">People</a>
+          <a href="careers.html">Careers</a>
+          <a href="studio.html">Studio</a>
+        </div>
+
+      </div>
+
+      <div class="ms-auto d-flex gap-3 align-items-center">
+
+        <a class="nav-link text-white nav-pill" href="projects.html">
+          Projects
+        </a>
+
+        <a class="nav-link text-white nav-pill" href="products.html">
+          Products
+        </a>
+
+        <a class="nav-link text-white nav-pill" href="materials.html">
+          Materials
+        </a>
+
+        <a class="nav-link text-white nav-pill" href="ourstory.html">
+          Our Story
+        </a>
+
+      </div>
+    </div>
+  </nav>
+
+  <div class="hero text-center"></div>
+
+  <div class="section container">
+    <p>
+      We put people and their well-being at the centre of what we do,
+      stimulating their senses to bring about joy in everyday activities.
+      We design unique kitchens, made to last generations, impervious to trends,
+      timeless: an expression of craftsmanship that is masterfully renewed in the present.
+      We transform cooking into an extraordinary experience through the constant innovation
+      of forms and materials.
+      We use our planet’s resources in a responsible way,
+      focusing on sustainability and respecting nature.
+    </p>
+  </div>
+
+  <footer class="text-center">
+    © 2026 Kulla Design
+  </footer>
+
+  <script>
+
+    const productsBtn = document.getElementById("productsBtn");
+    const productsMenu = document.getElementById("productsMenu");
+
+    const materialsBtn = document.getElementById("materialsBtn");
+    const materialsMenu = document.getElementById("materialsMenu");
+
+    function toggle(menu){
+      menu.classList.toggle("show");
+    }
+
+    productsBtn.addEventListener("click", function(e){
+      e.preventDefault();
+      toggle(productsMenu);
+    });
+
+    materialsBtn.addEventListener("click", function(e){
+      e.preventDefault();
+      toggle(materialsMenu);
+    });
+
+    document.addEventListener("click", function(e){
+
+      if(!productsBtn.contains(e.target) && !productsMenu.contains(e.target)){
+        productsMenu.classList.remove("show");
+      }
+
+      if(!materialsBtn.contains(e.target) && !materialsMenu.contains(e.target)){
+        materialsMenu.classList.remove("show");
+      }
+
+    });
+
+  </script>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

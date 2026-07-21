@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Our Story</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#050505;
+    color:white;
+    overflow-x:hidden;
+    position:relative;
+}
+
+/* BACK BUTTON */
+.back-btn{
+    position:fixed;
+    top:25px;
+    left:25px;
+    font-size:28px;
+    color:#ff7a00;
+    text-decoration:none;
+    z-index:999;
+    transition:0.2s ease;
+}
+
+.back-btn:hover{
+    transform:translateX(-5px);
+    opacity:0.8;
+}
+
+body::before{
+    content:'';
+    position:fixed;
+    width:700px;
+    height:700px;
+    background:radial-gradient(circle, rgba(255,122,0,0.14) 0%, transparent 70%);
+    top:-250px;
+    right:-200px;
+    z-index:-1;
+}
+
+.story-section{
+    max-width:900px;
+    margin:auto;
+    padding:90px 40px;
+}
+
+.label{
+    color:#ff7a00;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-size:12px;
+    margin-bottom:20px;
+}
+
+h1{
+    font-size:clamp(55px, 8vw, 120px);
+    line-height:0.9;
+    margin-bottom:40px;
+}
+
+p{
+    font-size:18px;
+    line-height:1.9;
+    color:#8a8a8a;
+    margin-bottom:25px;
+    max-width:800px;
+}
+
+.highlight{
+    margin-top:60px;
+    padding:30px;
+    border-left:4px solid #ff7a00;
+    background:#0d0d0d;
+    border-radius:18px;
+    color:#cfcfcf;
+    line-height:1.8;
+}
+
+.story-section::after{
+    content:'';
+    position:absolute;
+    width:1px;
+    height:200px;
+    background:#1a1a1a;
+    left:10%;
+    top:20%;
+    opacity:0.4;
+}
+
+footer{
+    text-align:center;
+    padding:40px 20px;
+    color:#666;
+    border-top:1px solid #111;
+    margin-top:80px;
+    font-size:14px;
+}
+
+@media(max-width:768px){
+    .story-section{
+        padding:60px 25px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- BACK ARROW -->
+<a href="index.html" class="back-btn">←</a>
+
+<div class="story-section">
+
+    <div class="label">Kulla Design</div>
+
+    <h1>Our Story</h1>
+
+    <p>
+        Founded in 2012, our studio began as a small architectural practice driven by a passion for timeless design and modern living. What started as a two-person team quickly evolved into a multidisciplinary architecture studio working across residential, commercial, and interior spaces.
+    </p>
+
+    <p>
+        We believe architecture should feel human. Every material, texture, and detail is carefully considered to create spaces that are both functional and emotionally meaningful. Over time, our work has grown through discipline, collaboration, and a commitment to simplicity.
+    </p>
+
+    <div class="highlight">
+        Architecture is not just construction — it is intention made visible. Every space we design is a quiet conversation between structure, light, and human experience.
+    </div>
+
+</div>
+
+<footer>
+    © 2026 Kulla Design
+</footer>
+
+</body>
+</html>

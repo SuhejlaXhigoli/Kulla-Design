@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Careers</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#050505;
+color:white;
+overflow-x:hidden;
+}
+
+.back-btn{
+position:fixed;
+top:25px;
+left:25px;
+font-size:30px;
+color:#ff7a00;
+text-decoration:none;
+z-index:999;
+transition:0.2s;
+}
+
+.back-btn:hover{
+transform:translateX(-5px);
+opacity:0.7;
+}
+
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:40px;
+}
+
+.hero h1{
+font-size:clamp(55px,8vw,120px);
+}
+
+.hero p{
+color:#7a7a7a;
+margin-top:20px;
+font-size:18px;
+}
+
+.jobs{
+max-width:1200px;
+margin:auto;
+padding:100px 40px;
+}
+
+.jobs h2{
+font-size:42px;
+margin-bottom:40px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit, minmax(230px,1fr));
+gap:25px;
+}
+
+.card{
+background:#0d0d0d;
+border:1px solid #1b1b1b;
+padding:35px;
+border-radius:22px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.card:hover{
+transform:translateY(-6px);
+border-color:#ff7a00;
+}
+
+.overlay{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.95);
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.form-box{
+background:#0f0f0f;
+border:1px solid #222;
+padding:35px;
+width:100%;
+max-width:500px;
+border-radius:28px;
+position:relative;
+}
+
+.close-btn{
+position:absolute;
+right:20px;
+top:12px;
+font-size:32px;
+cursor:pointer;
+color:#777;
+}
+
+.close-btn:hover{
+color:#ff7a00;
+}
+
+input, textarea{
+width:100%;
+padding:15px;
+margin-bottom:15px;
+background:#161616;
+border:1px solid transparent;
+border-radius:14px;
+color:white;
+outline:none;
+}
+
+input:focus, textarea:focus{
+border-color:#ff7a00;
+}
+
+button{
+width:100%;
+padding:16px;
+border:none;
+border-radius:14px;
+background:#ff7a00;
+color:white;
+cursor:pointer;
+font-size:15px;
+}
+
+button:hover{
+transform:translateY(-2px);
+}
+
+label{
+font-size:13px;
+color:#aaa;
+display:block;
+margin-bottom:10px;
+}
+
+footer{
+text-align:center;
+padding:40px;
+color:#666;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<a class="back-btn" href="index.html">←</a>
+
+<div class="hero">
+<h1>We’re Hiring</h1>
+<p>Build timeless spaces with us.</p>
+</div>
+
+<div class="jobs">
+<h2>Select a role</h2>
+
+<div class="grid">
+
+<div class="card" onclick="openForm('Architect')">Architect</div>
+<div class="card" onclick="openForm('Interior Designer')">Interior Designer</div>
+<div class="card" onclick="openForm('Material Researcher')">Material Researcher</div>
+<div class="card" onclick="openForm('Carpenter')">Carpenter</div>
+<div class="card" onclick="openForm('Production Worker')">Production Worker</div>
+<div class="card" onclick="openForm('Project Coordinator')">Project Coordinator</div>
+<div class="card" onclick="openForm('3D Artist')">3D Visualization Artist</div>
+<div class="card" onclick="openForm('Product Designer')">Product Designer</div>
+
+</div>
+</div>
+
+<div class="overlay" id="overlay">
+
+<div class="form-box">
+
+<span class="close-btn" onclick="closeForm()">×</span>
+
+<h3 id="jobTitle">Apply</h3>
+
+<form action="https://formsubmit.co/kulladesign@outlook.com" method="POST" enctype="multipart/form-data">
+
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_subject" value="New Job Application - Kulla Design">
+
+<input type="hidden" name="Position" id="jobInput">
+
+<input type="text" name="Name" placeholder="Full Name" required>
+<input type="email" name="Email" placeholder="Email" required>
+<input type="tel" name="Phone" placeholder="Phone Number" required>
+
+<textarea name="Message" rows="5" placeholder="Why should we hire you?" required></textarea>
+
+<label>Upload CV</label>
+<input type="file" name="CV" accept=".pdf,.doc,.docx" required>
+
+<button type="submit">Submit Application</button>
+
+</form>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 Kulla Design
+</footer>
+
+<script>
+
+const overlay = document.getElementById("overlay");
+const jobTitle = document.getElementById("jobTitle");
+const jobInput = document.getElementById("jobInput");
+
+function openForm(job){
+overlay.style.display = "flex";
+jobTitle.innerText = "Apply for " + job;
+jobInput.value = job;
+}
+
+function closeForm(){
+overlay.style.display = "none";
+}
+
+window.addEventListener("click", (e) => {
+if(e.target === overlay){
+closeForm();
+}
+});
+
+</script>
+
+</body>
+</html>

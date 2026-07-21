@@ -1,0 +1,267 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url('fonts/Poppins-Light.ttf') format('truetype');
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('fonts/Poppins-Regular.ttf') format('truetype');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('fonts/Poppins-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('fonts/Poppins-Bold.ttf') format('truetype');
+    font-weight: 700;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: white;
+    color: black;
+    margin: 0;
+    height: 100%;
+    opacity: 0;
+    animation: pageFade 0.5s ease forwards;
+    transition: opacity 0.3s ease;
+}
+
+@keyframes pageFade {
+    to {
+        opacity: 1;
+    }
+}
+
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: black;
+    margin-top: 20px;
+    transition: transform 0.4s ease;
+}
+
+.navbar.hide {
+    transform: translateY(-100%);
+}
+
+.navbar img {
+    height: 25px;
+}
+
+
+.nav-pill {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    transition: 0.2s ease;
+    box-shadow:
+        inset 0 2px 6px #e26723,
+        inset 0 -2px 6px rgba(0,0,0,0.2),
+        0 4px 12px rgba(0,0,0,0.2);
+}
+
+.nav-pill:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.nav-link,
+.logo-menu a {
+    position: relative;
+    transition: 0.3s ease;
+}
+
+.nav-link:hover,
+.logo-menu a:hover {
+    opacity: 0.7;
+    transform: translateY(-2px);
+}
+
+.nav-link::after,
+.logo-menu a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 2px;
+    background: black;
+    transition: 0.3s ease;
+}
+
+.nav-link:hover::after,
+.logo-menu a:hover::after {
+    width: 100%;
+}
+
+.nav-link.active,
+.logo-menu a.active {
+    font-weight: 600;
+    opacity: 1;
+}
+
+.nav-link.active::after,
+.logo-menu a.active::after {
+    width: 100%;
+}
+
+
+
+.logo-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+#menuToggle {
+    display: none;
+}
+
+.logo-btn {
+    cursor: pointer;
+}
+
+.logo-menu {
+    position: absolute;
+    top: 45px;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    opacity: 0;
+    transform: translateY(-10px);
+    visibility: hidden;
+
+    transition: 0.3s ease;
+}
+
+#menuToggle:checked ~ .logo-menu {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+.logo-menu a {
+    font-size: 18px;
+    font-weight: 600;
+    color: black;
+    text-decoration: none;
+}
+
+
+
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    position: relative;
+    transition: background-image 0.4s ease-in-out;
+}
+
+.hero h1 {
+    font-size: 72px;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.hero span {
+    font-weight: 400;
+}
+
+
+
+.section {
+    padding: 100px 0;
+}
+
+.section p {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 1.6;
+}
+
+
+.box {
+    background: #ddd;
+    height: 400px;
+}
+
+.box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+footer {
+    padding: 40px 0;
+    font-size: 14px;
+}
+
+
+.wallpaper-arrows button {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    padding: 5px 12px;
+}
+
+
+#prevBtn,
+#nextBtn {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+
+    background: rgba(0,0,0,0.4);
+    color: white;
+
+    border: none;
+    width: 55px;
+    height: 55px;
+
+    border-radius: 50%;
+    cursor: pointer;
+
+    font-size: 28px;
+    z-index: 999;
+
+    transition: 0.3s ease;
+    backdrop-filter: blur(6px);
+}
+
+#prevBtn { left: 30px; }
+#nextBtn { right: 30px; }
+
+#prevBtn:hover,
+#nextBtn:hover {
+    background: #e26723;
+    transform: translateY(-50%) scale(1.1);
+}

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contact</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#050505;
+    color:white;
+    overflow-x:hidden;
+    position:relative;
+}
+
+body::before{
+    content:'';
+    position:fixed;
+    width:700px;
+    height:700px;
+    background:radial-gradient(circle, rgba(255,122,0,0.14) 0%, transparent 70%);
+    top:-250px;
+    right:-200px;
+    z-index:-1;
+}
+
+.contact-section{
+    max-width:900px;
+    margin:auto;
+    padding:100px 40px;
+}
+
+.label{
+    color:#ff7a00;
+    text-transform:uppercase;
+    letter-spacing:3px;
+    font-size:12px;
+    margin-bottom:20px;
+}
+
+h1{
+    font-size:clamp(55px, 8vw, 120px);
+    line-height:0.9;
+    margin-bottom:30px;
+}
+
+p{
+    font-size:18px;
+    line-height:1.9;
+    color:#8a8a8a;
+    max-width:750px;
+    margin-bottom:40px;
+}
+
+.info{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    margin-top:40px;
+}
+
+.info p{
+    background:#0d0d0d;
+    border:1px solid #1b1b1b;
+    padding:18px 22px;
+    border-radius:16px;
+    font-weight:500;
+    color:#d0d0d0;
+    transition:0.3s;
+    position:relative;
+    overflow:hidden;
+}
+
+.info p::before{
+    content:'';
+    position:absolute;
+    left:0;
+    top:0;
+    width:4px;
+    height:100%;
+    background:#ff7a00;
+    opacity:0;
+    transition:0.3s;
+}
+
+.info p:hover{
+    transform:translateY(-4px);
+    border-color:#ff7a00;
+    background:#101010;
+}
+
+.info p:hover::before{
+    opacity:1;
+}
+
+footer{
+    text-align:center;
+    padding:40px 20px;
+    color:#666;
+    border-top:1px solid #111;
+    margin-top:80px;
+    font-size:14px;
+}
+
+@media(max-width:768px){
+
+    .contact-section{
+        padding:70px 25px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<a href="index.html" style="position:fixed;top:25px;left:25px;font-size:28px;color:#ff7a00;text-decoration:none;z-index:999;">←</a>
+
+<div class="contact-section">
+
+    <div class="label">Kulla Design</div>
+
+    <h1>Contact</h1>
+
+    <p>
+        Kulla Design is an architecture and interior studio focused on modern spaces, timeless aesthetics, and functional living. We create environments shaped by detail, clarity, and purpose.
+    </p>
+
+    <div class="info">
+
+        <p>Email: kulladesign@outlook.com</p>
+
+        <p>Phone: +383 44 48 58 48</p>
+
+        <p>Location: Gjilan 60000, Kosovo</p>
+
+    </div>
+
+</div>
+
+<footer>
+    © 2026 Kulla Design
+</footer>
+
+</body>
+</html>

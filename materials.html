@@ -1,0 +1,1949 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <a href="index.html" class="back-btn">←</a>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #050505;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .back-btn {
+            position: fixed;
+            left: 25px;
+            font-size: 28px;
+            color: #ff7a00;
+            text-decoration: none;
+            z-index: 999;
+            transition: 0.2s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateX(-5px);
+            opacity: 0.8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Poppins, sans-serif;
+        }
+
+        body {
+            background: #ffffff;
+            color: #111;
+        }
+
+        .nav {
+            position: sticky;
+            top: 0;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            padding: 12px;
+            z-index: 10;
+            font-size: 13px;
+        }
+
+        .nav div {
+            color: #fff;
+            cursor: pointer;
+            font-weight: 500;
+            opacity: .75;
+            transition: .2s;
+        }
+
+        .nav div:hover {
+            opacity: 1;
+        }
+
+        .nav .active {
+            color: #ff7a00;
+            opacity: 1;
+        }
+
+        .panel {
+            display: none;
+            padding: 25px 0;
+        }
+
+        .panel.active {
+            display: block;
+        }
+
+        .wrapper {
+            max-width: 1050px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        @media (max-width: 900px) {
+            .grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 650px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 420px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            cursor: pointer;
+            transition: .2s;
+            background: #fff;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+        }
+
+        .img {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #eee;
+        }
+
+        .img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: .2s;
+        }
+
+        .card:hover img {
+            transform: scale(1.03);
+        }
+
+        .title {
+            margin-top: 5px;
+            font-size: 11.5px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            padding: 20px;
+        }
+
+        .modal-content {
+            width: 100%;
+            max-width: 850px;
+            background: #fff;
+            border-radius: 14px;
+            overflow: hidden;
+            position: relative;
+            animation: pop .2s ease;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 14px;
+            font-size: 20px;
+            color: #fff;
+            cursor: pointer;
+            z-index: 5;
+        }
+
+        .modal-body {
+            display: flex;
+            gap: 20px;
+            padding: 18px;
+        }
+
+        .modal-img {
+            flex: 1;
+            background: #fff;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .modal-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1);
+            transition: 0.35s ease;
+        }
+
+        .modal.show .modal-img img {
+            transform: scale(1.03);
+        }
+
+        .modal-text {
+            flex: 1;
+            padding: 10px;
+        }
+
+        .modal-text h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .modal-text p {
+            font-size: 13px;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        @media (max-width:700px) {
+            .modal-body {
+                flex-direction: column;
+            }
+        }
+
+        @keyframes pop {
+            from {
+                transform: scale(.92);
+                opacity: 0
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1
+            }
+        }
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="nav">
+        <div class="tab active" onclick="switchTab('wood',this)">WOOD</div>
+        <div class="tab" onclick="switchTab('worktops',this)">WORKTOPS</div>
+        <div class="tab" onclick="switchTab('stone',this)">STONE</div>
+        <div class="tab" onclick="switchTab('fabric',this)">FABRIC</div>
+    </div>
+
+    <div id="wood" class="panel active">
+
+        <div style="padding:60px 20px 40px 20px; max-width:1050px; margin:auto;">
+            <h1 style="
+        margin:0;
+        font-family:Poppins,sans-serif;
+        font-size:35px;
+        font-weight:800;
+        line-height:1;
+        text-transform:uppercase;
+        letter-spacing:-2px;
+        color:#000;">
+                WOOD VENEERED BOARDS
+            </h1>
+        </div>
+        <div class="wrapper">
+            <div class="grid">
+
+                <div class="card"
+                    onclick="openModal('European Oak','Images/European Oak.jpg',' Choose European Oak if you want a classic, light-coloured veneer with the look of timeless elegance.')">
+                    <div class="img"><img src="Images/European Oak.jpg"></div>
+                    <div class="title">European Oak</div>
+                    <div class="title">E, N, S, A, 1A, B </div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Oak Rustic','Images/Oak Rustic.jpg','The Charismo veneer Oak Rustic highlights natural grain structure, ideal for rustic interiors.')">
+                    <div class="img"><img src="Images/Oak Rustic.jpg"></div>
+                    <div class="title">Oak Rustic</div>
+                    <div class="title"> N </div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Oak Rift','Images/Oak Rift.jpg','A straight-lined structure and light-brown colour lend Oak Rift veneered boards an unpretentious yet elegant appearance.')">
+                    <div class="img"><img src="Images/Oak Rift.jpg"></div>
+                    <div class="title">Oak Rift</div>
+                    <div class="title"> E, A, 1A, B</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Knotty Oak','Images/Knotty Oak.jpg','Once overlooked as simple firewood, classic Knotty Oak is now highly valued for its unique character. Its rustic grain patterns and natural texture bring out the timeless elegance and beauty of oak wood.')">
+                    <div class="img"><img src="Images/Knotty Oak.jpg"></div>
+                    <div class="title">Knotty Oak</div>
+                    <div class="title"> N </div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('European Maple','Images/European Maple.jpg','European Maple is a light-coloured wood veneer with a discreet and classic look. It makes a room look large and inviting.')">
+                    <div class="img"><img src="Images/European Maple.jpg"></div>
+                    <div class="title">European Maple</div>
+                    <div class="title"> E, N, S, A, 1A, B</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Canadian Maple','Images/Canadian Maple.jpg','Canadian Maple has a light-beige to light-pink hue and a quiet grain pattern that creates a cosy room feeling.')">
+                    <div class="img"><img src="Images/Canadian Maple.jpg"></div>
+                    <div class="title">Canadian Maple</div>
+                    <div class="title"> E, N, S, A, 1A, B</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Birch Flat','Images/Birch Flat.jpg','The Birch Flat Sliced veneer reveals the natural decorative annual rings. This silk-matt wood veneer creates discreet and natural-looking highlights in both furniture and interior design.')">
+                    <div class="img"><img src="Images/Birch Flat.jpg"></div>
+                    <div class="title">Birch Flat</div>
+                    <div class="title"> E, N, S, A, 1A, B</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Birch Rotary Cut','Images/Birch Rotary Cut.jpg','The flame pattern of the Peeled Birch veneer is quite uneven in appearance. The result is a lively veneer pattern that, in combination with its light colouration, integrates well with various room concepts.')">
+                    <div class="img"><img src="Images/Birch Rotary Cut.jpg"></div>
+                    <div class="title">Birch Rotary Cut</div>
+                    <div class="title"> N, A, B </div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Brown Heart Beech','Images/Brown Heart Beech.jpg','Discreet colourations in the core wood lend the Beech Core wood veneer a lively and appealing appearance.')">
+                    <div class="img"><img src="Images/Brown Heart Beech.jpg"></div>
+                    <div class="title">Brown Heart Beech</div>
+                    <div class="title"> N, A, B </div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Steamed Beech','Images/Steamed Beech.jpg','The warm, reddish colour tone of Steamed Beech creates a cosy atmosphere.')">
+                    <div class="img"><img src="Images/Steamed Beech.jpg"></div>
+                    <div class="title">Steamed Beech</div>
+                    <div class="title"> E, N, S, A, 1A, B</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Alder','Images/Alder.jpg','The reddish-yellow to brown colour tones and the delicate grain pattern of this alder wood veneer bring a natural and vibrant charm to any room.')">
+                    <div class="img"><img src="Images/Alder.jpg"></div>
+                    <div class="title">Alder</div>
+                    <div class="title"> N </div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Ash','Images/Ash.jpg','Ash wood veneer is characterised by clearly discernible annual rings. They create a natural and inviting flair.')">
+                    <div class="img"><img src="Images/Ash.jpg"></div>
+                    <div class="title">Ash</div>
+                    <div class="title"> E, N, S, A, 1A, B</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('American Cherry','Images/American Cherry.jpg','The typical wood character of American Cherry lends the veneer a dignified yet well-balanced look.')">
+                    <div class="img"><img src="Images/American Cherry.jpg"></div>
+                    <div class="title">American Cherry</div>
+                    <div class="title"> E, N, S, A, 1A, B</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Black American Walnut','Images/Black American Walnut.jpg','The grain pattern of this wood is as reserved as its medium-brown colouring: American Walnut is ideal for combining with a wide range of styles.')">
+                    <div class="img"><img src="Images/Black American Walnut.jpg"></div>
+                    <div class="title">Black American Walnut</div>
+                    <div class="title"> E, N, S, A, 1A, B</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Pine','Images/Pine.jpg','This spruce veneer is characterised by a light and uniform colour tone. Its discreet, straight-lined grain pattern pairs beautifully with more expressive design elements.')">
+                    <div class="img"><img src="Images/Pine.jpg"></div>
+                    <div class="title">Pine</div>
+                    <div class="title"> E, N, S, A, 1A, B</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Silver Fir','Images/Silver Fir.jpg','The light-coloured, unpretentious appearance and fine grain of pine wood define the character of this veneer.')">
+                    <div class="img"><img src="Images/Silver Fir.jpg"></div>
+                    <div class="title">Silver Fir</div>
+                    <div class="title"> E, N, S, A, 1A, B</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Swiss Pine','Images/Swiss Pine.jpg','Swiss Pine is a wood veneer that exudes pure naturalness. Its typically dark knots and light-coloured wood combined with intensive and healthy aromas make it a favourite for bedroom furniture.')">
+                    <div class="img"><img src="Images/Swiss Pine.jpg"></div>
+                    <div class="title">Swiss Pine</div>
+                    <div class="title"> N </div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Spruce','Images/Spruce.jpg','Spruce veneer thanks its characteristic look to an even, light colour and a quiet grain pattern – they make it as ideal for a country house interior as they do for a modern and timeless look.')">
+                    <div class="img"><img src="Images/Spruce.jpg"></div>
+                    <div class="title">Spruce</div>
+                    <div class="title"> E, N, S, A, 1A, B</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Knotty Spruce','Images/Knotty Spruce.jpg','Knots are a defining characteristic of this wood veneer. Use them to set rustic highlights that will never go out of fashion.')">
+                    <div class="img"><img src="Images/Knotty Spruce.jpg"></div>
+                    <div class="title">Knotty Spruce</div>
+                    <div class="title"> N </div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Oak Antique','Images/Oak Antique.jpg','The Oak Antique wood veneer looks vibrant, natural and dignified. Intergrowth, knots, medullary rays and cracks all play their part in the overall appearance.')">
+                    <div class="img"><img src="Images/Oak Antique.jpg"></div>
+                    <div class="title">Oak Antique</div>
+                    <div class="title"> N </div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Oak Volcano','Images/Oak Volcano.jpg','A rich dark brown colouration with lively hues lends the Oak Volcano wood veneer its particular appeal.')">
+                    <div class="img"><img src="Images/Oak Volcano.jpg"></div>
+                    <div class="title">Oak Volcano</div>
+                    <div class="title"> N, S, A, B </div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Brown Heart Ash','Images/Brown Heart Ash.jpg','Light to dark brown colour hues in the grain make Oak Core a striking veneer that is rich in contrast.')">
+                    <div class="img"><img src="Images/Brown Heart Ash.jpg"></div>
+                    <div class="title">Brown Heart Ash</div>
+                    <div class="title"> N, A, B </div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Larch','Images/Larch.jpg','Featuring rich textures and a distinctive look, Larch wood adds warmth, depth, and a sophisticated touch to modern interiors.')">
+                    <div class="img"><img src="Images/Larch.jpg"></div>
+                    <div class="title">Larch</div>
+                    <div class="title"> E, N, S, A, 1A, B</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Historic Spruce','Images/Historic Spruce.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Historic Spruce.jpg"></div>
+                    <div class="title">Historic Spruce</div>
+                    <div class="title"> N </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div style="padding:60px 20px 40px 20px; max-width:1050px; margin:auto;">
+            <h1 style="
+        margin:0;
+        font-family:Poppins,sans-serif;
+        font-size:35px;
+        font-weight:800;
+        line-height:1;
+        text-transform:uppercase;
+        letter-spacing:-1px;
+        color:#000;">
+                Laminate COLOURline Classic
+            </h1>
+        </div>
+
+        <div class="wrapper">
+            <div class="grid">
+
+                <div class="card"
+                    onclick="openModal('Adobe Grey','Images/Adobe Grey.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Adobe Grey.jpg"></div>
+                    <div class="title">Adobe Grey</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Agate Grey','Images/Agate Grey.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Agate Grey.jpg"></div>
+                    <div class="title">Agate Grey</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Acai','Images/Acai.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Acai.jpg"></div>
+                    <div class="title">Acai</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Anthracite','Images/Anthracite.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Anthracite.jpg"></div>
+                    <div class="title">Anthracite</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Black Blue','Images/Black Blue.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Black Blue.jpg"></div>
+                    <div class="title">Black Blue</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Basalt ','Images/Basalt.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Basalt.jpg"></div>
+                    <div class="title">Basalt</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Basalt 2166 PE','Images/Basalt 2166 PE.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Basalt 2166 PE.jpg"></div>
+                    <div class="title">Basalt 2166 PE</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Arosa Violet','Images/Arosa Violet.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Arosa Violet.jpg"></div>
+                    <div class="title">Arosa Violet</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Avocado Green','Images/Avocado Green.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Avocado Green.jpg"></div>
+                    <div class="title">Avocado Green</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Black','Images/Black.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Black.jpg"></div>
+                    <div class="title">Black</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Basalt','Images/Basalt.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Basalt.jpg"></div>
+                    <div class="title">Basalt</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Black Green','Images/Black Green.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Black Green.jpg"></div>
+                    <div class="title">Black Green</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Caribbean Blue','Images/Caribbean Blue.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Caribbean Blue.jpg"></div>
+                    <div class="title">Caribbean Blue</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Blue Avio','Images/Blue Avio.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Blue Avio.jpg"></div>
+                    <div class="title">Blue Avio</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Bright Grey','Images/Bright Grey.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Bright Grey.jpg"></div>
+                    <div class="title">Bright Grey</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Cashmere','Images/Cashmere.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Cashmere.jpg"></div>
+                    <div class="title">Cashmere</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Champagne','Images/Champagne.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Champagne.jpg"></div>
+                    <div class="title">Champagne</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Cobalt Grey','Images/Cobalt Grey.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Cobalt Grey.jpg"></div>
+                    <div class="title">Cobalt Grey</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Ceramic Red','Images/Ceramic Red.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Ceramic Red.jpg"></div>
+                    <div class="title">Blue Avio</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Coralle','Images/Coralle.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Coralle.jpg"></div>
+                    <div class="title">Coralle</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Curcuma Yellow','Images/Curcuma Yellow.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Curcuma Yellow.jpg"></div>
+                    <div class="title">Curcuma Yellow</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Dark Brown','Images/Dark Brown.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Dark Brown.jpg"></div>
+                    <div class="title">Dark Brown</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Graphite Grey','Images/Graphite Grey.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Graphite Grey.jpg"></div>
+                    <div class="title">Graphite Grey</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Dark Forest','Images/Dark Forest.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Dark Forest.jpg"></div>
+                    <div class="title">Dark Forest</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Graphite Blue','Images/Graphite Blue.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Graphite Blue.jpg"></div>
+                    <div class="title">Graphite Blue</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Iconic Grey','Images/Iconic Grey.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Iconic Grey.jpg"></div>
+                    <div class="title">Iconic Grey</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Diamond White','Images/Diamond White.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Diamond White.jpg"></div>
+                    <div class="title">Diamond White</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Fog Grey','Images/Fog Grey.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Fog Grey.jpg"></div>
+                    <div class="title">Fog Grey</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Grey RAL','Images/Grey RAL.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Grey RAL.jpg"></div>
+                    <div class="title">Grey RAL</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Ivory','Images/Ivory.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Ivory.jpg"></div>
+                    <div class="title">Ivory</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Crystal White','Images/Crystal White.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Crystal White.jpg"></div>
+                    <div class="title">Crystal White</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Ivory 2109','Images/Ivory 2109 .jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Ivory 2109 .jpg"></div>
+                    <div class="title">Ivory 2109</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Jade','Images/Jade.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Jade.jpg"></div>
+                    <div class="title">Jade</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Magnolia','Images/Magnolia.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Magnolia.jpg"></div>
+                    <div class="title">Magnolia</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Mandarin Orange','Images/Mandarin Orange.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Mandarin Orange.jpg"></div>
+                    <div class="title">Mandarin Orange</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Maracuja Red','Images/Maracuja Red.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Maracuja Red.jpg"></div>
+                    <div class="title">Maracuja Red</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Marocco Blue','Images/Marocco Blue.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Marocco Blue.jpg"></div>
+                    <div class="title">Marocco Blue</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Moss Green','Images/Moss Green.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Moss Green.jpg"></div>
+                    <div class="title">Moss Green</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Off-White','Images/Off-White.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Off-White.jpg"></div>
+                    <div class="title">Off-White</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Pebble','Images/Pebble.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Pebble.jpg"></div>
+                    <div class="title">Pebble</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Petrol','Images/Petrol.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Petrol.jpg"></div>
+                    <div class="title">Petrol</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Platinum Grey','Images/Platinum Grey.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Platinum Grey.jpg"></div>
+                    <div class="title">Platinum Grey</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Polar White','Images/Polar White.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Polar White.jpg"></div>
+                    <div class="title">Polar White</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Powder Pink','Images/Powder Pink.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Powder Pink.jpg"></div>
+                    <div class="title">Powder Pink</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Red Curry','Images/Red Curry.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Red Curry.jpg"></div>
+                    <div class="title">Red Curry</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Saba Green','Images/Saba Green.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Saba Green.jpg"></div>
+                    <div class="title">Saba Green</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Safran Yellow','Images/Safran Yellow.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Safran Yellow.jpg"></div>
+                    <div class="title">Safran Yellow</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Sahara Beige','Images/Sahara Beige.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Sahara Beige.jpg"></div>
+                    <div class="title">Sahara Beige</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Sepia Brown','Images/Sepia Brown.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Sepia Brown.jpg"></div>
+                    <div class="title">Sepia Brown</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Silk','Images/Silk.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Silk.jpg"></div>
+                    <div class="title">Silk</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Sky','Images/Sky.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Sky.jpg"></div>
+                    <div class="title">Sky</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Slate Grey','Images/Silk.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Silk.jpg"></div>
+                    <div class="title">Slate Grey</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Stone Beige','Images/Stone Beige.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Stone Beige.jpg"></div>
+                    <div class="title">Stone Beige</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Storm Grey','Images/Storm Grey.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Storm Grey.jpg"></div>
+                    <div class="title">Storm Grey</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Taupe','Images/Taupe.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Taupe.jpg"></div>
+                    <div class="title">Taupe</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Terra Grey','Images/Terra Grey.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Terra Grey.jpg"></div>
+                    <div class="title">Terra Grey</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Terre','Images/Terre.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Terre.jpg"></div>
+                    <div class="title">Terre</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Truffle Beige','Images/Truffle Beige.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Truffle Beige.jpg"></div>
+                    <div class="title">Truffle Beige</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Ultra White','Images/Ultra White.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Ultra White.jpg"></div>
+                    <div class="title">Ultra White</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Urban Black','Images/Urban Black.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Urban Black.jpg"></div>
+                    <div class="title">Urban Black</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Verde','Images/Verde.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Verde.jpg"></div>
+                    <div class="title">Verde</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('White RAL 9010','Images/White RAL 9010.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/White RAL 9010.jpg"></div>
+                    <div class="title">White RAL 9010</div>
+                </div>
+
+            </div>
+        </div>
+
+        <div style="padding:60px 20px 40px 20px; max-width:1050px; margin:auto;">
+            <h1 style="
+        margin:0;
+        font-family:Poppins,sans-serif;
+        font-size:35px;
+        font-weight:800;
+        line-height:1;
+        text-transform:uppercase;
+        letter-spacing:-2px;
+        color:#000;">
+                COLOURline Creative
+            </h1>
+        </div>
+
+        <div class="wrapper">
+            <div class="grid">
+
+                <div class="card"
+                    onclick="openModal('Basalt 2166 DP','Images/Basalt 2166 DP.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Basalt 2166 DP.jpg"></div>
+                    <div class="title">Basalt 2166 DP</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Black 2190','Images/Black 2190.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Black 2190.jpg"></div>
+                    <div class="title">Black 2190</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Cashmere 27049 GR','Images/Cashmere 27049 GR.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Cashmere 27049 GR.jpg"></div>
+                    <div class="title">Cashmere 27049 GR</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Cashmere 27049 UM','Images/Cashmere 27049 UM.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Cashmere 27049 UM.jpg"></div>
+                    <div class="title">Cashmere 27049 UM</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Cashmere 27049 DP','Images/Cashmere 27049 DP.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Cashmere 27049 DP.jpg"></div>
+                    <div class="title">Cashmere 27049 DP</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Ceramic Black','Images/Ceramic Black.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Ceramic Black.jpg"></div>
+                    <div class="title">Ceramic Black</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Champagne 27045 GR','Images/Champagne 27045 GR.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Champagne 27045 GR.jpg"></div>
+                    <div class="title">Champagne 27045 GR</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Champagne 27045 UM ','Images/Champagne 27045 UM.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Champagne 27045 UM.jpg"></div>
+                    <div class="title">Champagne 27045 UM</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Champagne 27045 SU ','Images/Champagne 27045 SU.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Champagne 27045 SU.jpg"></div>
+                    <div class="title">Champagne 27045 SU</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Crystal White 27018 UM ','Images/Crystal White 27018 UM.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Crystal White 27018 UM.jpg"></div>
+                    <div class="title">Crystal White 27018 UM</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Crystal White 27018 DP','Images/Crystal White 27018 DP.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Crystal White 27018 DP.jpg"></div>
+                    <div class="title">Crystal White 27018 DP</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Diamond-White 1570 UM','Images/Cashmere 27049 UM.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Cashmere 27049 UM.jpg"></div>
+                    <div class="title">Cashmere 27049 UM</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Crystal White 27018 SU','Images/Crystal White 27018 SU.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Crystal White 27018 SU.jpg"></div>
+                    <div class="title">Crystal White 27018 SU</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Pebble 26577 UM','Images/Pebble 26577 UM.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Pebble 26577 UM.jpg"></div>
+                    <div class="title">Pebble 26577 UM</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Taupe 27166 UM','Images/Taupe 27166 UM.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Taupe 27166 UM.jpg"></div>
+                    <div class="title">Taupe 27166 UM</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Terra Grey 27010 GR ','Images/Terra Grey 27010 GR.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Terra Grey 27010 GR.jpg"></div>
+                    <div class="title">Terra Grey 27010 GR</div>
+                </div>
+
+            </div>
+        </div>
+
+        <div style="padding:60px 20px 40px 20px; max-width:1050px; margin:auto;">
+            <h1 style="
+        margin:0;
+        font-family:Poppins,sans-serif;
+        font-size:35px;
+        font-weight:800;
+        line-height:1;
+        text-transform:uppercase;
+        letter-spacing:-2px;
+        color:#000;">
+                Antifingerprint Optiboard
+            </h1>
+        </div>
+
+        <div class="wrapper">
+            <div class="grid">
+
+                <div class="card"
+                    onclick="openModal('Acai 25727 OM ','Images/Acai 25727 OM.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Acai 25727 OM.jpg"></div>
+                    <div class="title">Acai 25727 OM</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Agate Grey 2171 OM','Images/Agate Grey 2171 OM.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Agate Grey 2171 OM.jpg"></div>
+                    <div class="title">Agate Grey 2171 OM</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Basalt 2166 OM','Images/Basalt 2166 OM.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Basalt 2166 OM.jpg"></div>
+                    <div class="title">Basalt 2166 OM</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Black 2190 OM','Images/Black 2190 OM.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Black 2190 OM.jpg"></div>
+                    <div class="title">Black 2190 OM</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Black Blue 22192 OM','Images/Black Blue 22192 OM.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Black Blue 22192 OM.jpg"></div>
+                    <div class="title">Black Blue 22192 OM</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Black Green 25735 OM','Images/Black Green 25735 OM.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Black Green 25735 OM.jpg"></div>
+                    <div class="title">Black Green 25735 OM</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Cashmere 27049 OM','Images/Cashmere 27049 OM.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Cashmere 27049 OM.jpg"></div>
+                    <div class="title">Cashmere 27049 OM</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Champagne 27045 OM','Images/Champagne 27045 OM.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Champagne 27045 OM.jpg"></div>
+                    <div class="title">Champagne 27045 OM</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Crystal White 27018 OM','Images/Crystal White 27018 OM.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Crystal White 27018 OM.jpg"></div>
+                    <div class="title">Crystal White 27018 OM</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Diamond White 1570 OM','Images/Diamond White 1570 OM.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Diamond White 1570 OM.jpg"></div>
+                    <div class="title">Diamond White 1570 OM</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Graphite Grey 2162 OM','Images/Graphite Grey 2162 OM.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Graphite Grey 2162 OM.jpg"></div>
+                    <div class="title">Graphite Grey 2162 OM</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Magnolia 2507 OM','Images/Magnolia 2507 OM.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Magnolia 2507 OM.jpg"></div>
+                    <div class="title">Magnolia 2507 OM</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Sepia Brown 25726 OM','Images/Sepia Brown 25726 OM.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Sepia Brown 25726 OM.jpg"></div>
+                    <div class="title">Sepia Brown 25726 OM</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Taupe 27166 OM','Images/Taupe 27166 OM.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Taupe 27166 OM.jpg"></div>
+                    <div class="title">Taupe 27166 OM</div>
+                </div>
+
+            </div>
+        </div>
+
+        <div style="padding:60px 20px 40px 20px; max-width:1050px; margin:auto;">
+            <h1 style="
+        margin:0;
+        font-family:Poppins,sans-serif;
+        font-size:35px;
+        font-weight:800;
+        line-height:1;
+        text-transform:uppercase;
+        letter-spacing:-2px;
+        color:#000;">
+                Antifingerprint Opti Faced Board
+            </h1>
+        </div>
+
+        <div class="wrapper">
+            <div class="grid">
+
+                <div class="card"
+                    onclick="openModal('Agate Grey 2171 OF','Images/Agate Grey 2171 OF.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Agate Grey 2171 OF.jpg"></div>
+                    <div class="title">Agate Grey 2171 OF</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Basalt 2166 OF','Images/Basalt 2166 OF.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Basalt 2166 OF.jpg"></div>
+                    <div class="title">Basalt 2166 OF</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Black 2190 OF','Images/Black 2190 OF.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Black 2190 OF.jpg"></div>
+                    <div class="title">Black 2190 OF</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Black Green 25735 OF','Images/Black Green 25735 OF.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Black Green 25735 OF.jpg"></div>
+                    <div class="title">Black Green 25735 OF</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Caribbean Blue 22862 OF','Images/Caribbean Blue 22862 OF.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Caribbean Blue 22862 OF.jpg"></div>
+                    <div class="title">Caribbean Blue 22862 OF</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Cashmere 27049 OF','Images/Cashmere 27049 OF.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Cashmere 27049 OF.jpg"></div>
+                    <div class="title">Cashmere 27049 OF</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Champagne 27045 OF','Images/Champagne 27045 OF.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Champagne 27045 OF.jpg"></div>
+                    <div class="title">Champagne 27045 OF</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Crystal White 27018 OF','Images/Crystal White 27018 OF.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Crystal White 27018 OF.jpg"></div>
+                    <div class="title">Crystal White 27018 OF</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Diamond White 1570 OF','Images/Diamond White 1570 OF.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Diamond White 1570 OF.jpg"></div>
+                    <div class="title">Diamond White 1570 OF</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Magnolia 2507 OF','Images/Magnolia 2507 OF.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Magnolia 2507 OF.jpg"></div>
+                    <div class="title">Magnolia 2507 OF</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Mandarin Orange 22866 OF','Images/Mandarin Orange 22866 OF.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Mandarin Orange 22866 OF.jpg"></div>
+                    <div class="title">Mandarin Orange 22866 OF</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Saba Grün 22861 OF','Images/Saba Grün 22861 OF.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Saba Grün 22861 OF.jpg"></div>
+                    <div class="title">Saba Grün 22861 OF</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Truffle Beige 22860 OF','Images/Truffle Beige 22860 OF.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Truffle Beige 22860 OF.jpg"></div>
+                    <div class="title">Truffle Beige 22860 OF</div>
+                </div>
+
+            </div>
+        </div>
+
+        <div style="padding:60px 20px 40px 20px; max-width:1050px; margin:auto;">
+            <h1 style="
+margin:0;
+font-family:Poppins,sans-serif;
+font-size:35px;
+font-weight:800;
+line-height:1;
+text-transform:uppercase;
+letter-spacing:-2px;
+color:#000;">
+                WOODline Classic
+            </h1>
+        </div>
+
+        <div class="wrapper">
+            <div class="grid">
+
+                <div class="card"
+                    onclick="openModal('Alpine Oak Snow K4325 AW','Images/Alpine Oak Snow K4325 AW.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Alpine Oak Snow K4325 AW.jpg"></div>
+                    <div class="title">Alpine Oak Snow K4325 AW</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Ash Limpido Gold K2827 AT','Images/Ash Limpido Gold K2827 AT.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Ash Limpido Gold K2827 AT.jpg"></div>
+                    <div class="title">Ash Limpido Gold K2827 AT</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Ash Limpido Nature K2828 AT','Images/Ash Limpido Nature K2828 AT.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Ash Limpido Nature K2828 AT.jpg"></div>
+                    <div class="title">Ash Limpido Nature K2828 AT</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Beech 3391 BS','Images/Beech 3391 BS.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Beech 3391 BS.jpg"></div>
+                    <div class="title">Beech 3391 BS</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Beech Core 37706 MN','Images/Beech Core 37706 MN.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Beech Core 37706 MN.jpg"></div>
+                    <div class="title">Beech Core 37706 MN</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Chalet Oak 35252 AT','Images/Chalet Oak 35252 AT.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Chalet Oak 35252 AT.jpg"></div>
+                    <div class="title">Chalet Oak 35252 AT</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Cottage Pine Antique K4347 AT','Images/Cottage Pine Antique K4347 AT.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Cottage Pine Antique K4347 AT.jpg"></div>
+                    <div class="title">Cottage Pine Antique K4347 AT</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Elm Isar K2832 AN','Images/Elm Isar K2832 AN.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Elm Isar K2832 AN.jpg"></div>
+                    <div class="title">Elm Isar K2832 AN</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Lavare 37744 AT','Images/Lavare 37744 AT.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Lavare 37744 AT.jpg"></div>
+                    <div class="title">Lavare 37744 AT</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Maple 3375 BS','Images/Maple 3375 BS.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Maple 3375 BS.jpg"></div>
+                    <div class="title">Maple 3375 BS</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Maple Murnau 3306 BS','Images/Maple Murnau 3306 BS.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Maple Murnau 3306 BS.jpg"></div>
+                    <div class="title">Maple Murnau 3306 BS</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Native Oak Classic K4433 AW','Images/Native Oak Classic K4433 AW.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Native Oak Classic K4433 AW.jpg"></div>
+                    <div class="title">Native Oak Classic K4433 AW</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Native Oak Light K4410 AW','Images/Native Oak Light K4410 AW.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Native Oak Light K4410 AW.jpg"></div>
+                    <div class="title">Native Oak Light K4410 AW</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Noce Novel K2826 GR','Images/Noce Novel K2826 GR.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Noce Novel K2826 GR.jpg"></div>
+                    <div class="title">Noce Novel K2826 GR</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Noce Sizilia 37755 BS','Images/Noce Sizilia 37755 BS.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Noce Sizilia 37755 BS.jpg"></div>
+                    <div class="title">Noce Sizilia 37755 BS</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Oak Antique Expressive K4447 AN','Images/Oak Antique Expressive K4447 AN.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Antique Expressive K4447 AN.jpg"></div>
+                    <div class="title">Oak Antique Expressive K4447 AN</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Oak Castell 32360 AN','Images/Oak Castell 32360 AN.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Castell 32360 AN.jpg"></div>
+                    <div class="title">Oak Castell 32360 AN</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Oak Castilla Toledo K2815 AN','Images/Oak Castilla Toledo K2815 AN.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Castilla Toledo K2815 AN.jpg"></div>
+                    <div class="title">Oak Castilla Toledo K2815 AN</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Oak Castilla Zamora K2814 AN','Images/Oak Castilla Zamora K2814 AN.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Castilla Zamora K2814 AN.jpg"></div>
+                    <div class="title">Oak Castilla Zamora K2814 AN</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Oak Cordoba Crema K2241 AN','Images/Oak Cordoba Crema K2241 AN.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Cordoba Crema K2241 AN.jpg"></div>
+                    <div class="title">Oak Cordoba Crema K2241 AN</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Oak Cordoba Moderno K2240 AN','Images/Oak Cordoba Moderno K2240 AN.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Cordoba Moderno K2240 AN.jpg"></div>
+                    <div class="title">Oak Cordoba Moderno K2240 AN</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Oak Eclipse Moon K2824 GR','Images/Oak Eclipse Moon K2824 GR.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Eclipse Moon K2824 GR.jpg"></div>
+                    <div class="title">Oak Eclipse Moon K2824 GR</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Oak Eclipse Sun K2825 GR','Images/Oak Eclipse Sun K2825 GR.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Eclipse Sun K2825 GR.jpg"></div>
+                    <div class="title">Oak Eclipse Sun K2825 GR</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Oak Elegant K5896 AN','Images/Oak Elegant K5896 AN.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Elegant K5896 AN.jpg"></div>
+                    <div class="title">Oak Elegant K5896 AN</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Oak Lucey Calm K2762 AN','Images/Oak Lucey Calm K2762 AN.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Lucey Calm K2762 AN.jpg"></div>
+                    <div class="title">Oak Lucey Calm K2762 AN</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Oak Lucey Moody K2761 AN','Images/Oak Lucey Moody K2761 AN.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Lucey Moody K2761 AN.jpg"></div>
+                    <div class="title">Oak Lucey Moody K2761 AN</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Oak Mongori 37745 AT','Images/Oak Mongori 37745 AT.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Mongori 37745 AT.jpg"></div>
+                    <div class="title">Oak Mongori 37745 AT</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Oak Natural 37307 AN','Images/Oak Natural 37307 AN.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Natural 37307 AN.jpg"></div>
+                    <div class="title">Oak Natural 37307 AN</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Oak Pallidus K2831 AN','Images/Oak Pallidus K2831 AN.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Pallidus K2831 AN.jpg"></div>
+                    <div class="title">Oak Pallidus K2831 AN</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Oak Relief Cardamom K2776 GR','Images/Oak Relief Cardamom K2776 GR.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Relief Cardamom K2776 GR.jpg"></div>
+                    <div class="title">Oak Relief Cardamom K2776 GR</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Oak Relief Ginger K2775 GR','Images/Oak Relief Ginger K2775 GR.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Relief Ginger K2775 GR.jpg"></div>
+                    <div class="title">Oak Relief Ginger K2775 GR</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Oak Relief Pimento K2774 GR','Images/Oak Relief Pimento K2774 GR.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Relief Pimento K2774 GR.jpg"></div>
+                    <div class="title">Oak Relief Pimento K2774 GR</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Oak Salzburg Fresh K5283 AN','Images/Oak Salzburg Fresh K5283 AN.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Salzburg Fresh K5283 AN.jpg"></div>
+                    <div class="title">Oak Salzburg Fresh K5283 AN</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Oak Sanremo Tabacco 34138 AN','Images/Oak Sanremo Tabacco 34138 AN.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Sanremo Tabacco 34138 AN.jpg"></div>
+                    <div class="title">Oak Sanremo Tabacco 34138 AN</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Oak Summerfield Dawn K2759 AN','Images/Oak Summerfield Dawn K2759 AN.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Summerfield Dawn K2759 AN.jpg"></div>
+                    <div class="title">Oak Summerfield Dawn K2759 AN</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Oak Summerfield Dusk K2760 AN','Images/Oak Summerfield Dusk K2760 AN.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Summerfield Dusk K2760 AN.jpg"></div>
+                    <div class="title">Oak Summerfield Dusk K2760 AN</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Oak Vendela Canoa K2821 AN','Images/Oak Vendela Canoa K2821 AN.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Vendela Canoa K2821 AN.jpg"></div>
+                    <div class="title">Oak Vendela Canoa K2821 AN</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Oak Vendela Mindo K2816 AN','Images/Oak Vendela Mindo K2816 AN.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Vendela Mindo K2816 AN.jpg"></div>
+                    <div class="title">Oak Vendela Mindo K2816 AN</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Oak Wild 38932 AN','Images/Oak Wild 38932 AN.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Wild 38932 AN.jpg"></div>
+                    <div class="title">Oak Wild 38932 AN</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Oak Zermatt Castor K2413 AN','Images/Oak Zermatt Castor K2413 AN.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Zermatt Castor K2413 AN.jpg"></div>
+                    <div class="title">Oak Zermatt Castor K2413 AN</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Oak Zermatt Vispa K2414 AN','Images/Oak Zermatt Vispa K2414 AN.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Zermatt Vispa K2414 AN.jpg"></div>
+                    <div class="title">Oak Zermatt Vispa K2414 AN</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Polar Pine Urus K2405 AT','Images/Polar Pine Urus K2405 AT.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Polar Pine Urus K2405 AT.jpg"></div>
+                    <div class="title">Polar Pine Urus K2405 AT</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Sonoma Oak Light 34038 AT','Images/Sonoma Oak Light 34038 AT.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Sonoma Oak Light 34038 AT.jpg"></div>
+                    <div class="title">Sonoma Oak Light 34038 AT</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Spruce Antique Expressive K4949 AT','Images/Spruce Antique Expressive K4949 AT.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Spruce Antique Expressive K4949 AT.jpg"></div>
+                    <div class="title">Spruce Antique Expressive K4949 AT</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Spruce Knotty 3396 AN','Images/Spruce Knotty 3396 AN.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Spruce Knotty 3396 AN.jpg"></div>
+                    <div class="title">Spruce Knotty 3396 AN</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Spruce Taiga K2817 AT','Images/Spruce Taiga K2817 AT.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Spruce Taiga K2817 AT.jpg"></div>
+                    <div class="title">Spruce Taiga K2817 AT</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Stadtberg Beech Creme K4335 MN','Images/Stadtberg Beech Creme K4335 MN.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Stadtberg Beech Creme K4335 MN.jpg"></div>
+                    <div class="title">Stadtberg Beech Creme K4335 MN</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Walnut Bruna Forte K2829 AN','Images/Walnut Bruna Forte K2829 AN.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Walnut Bruna Forte K2829 AN.jpg"></div>
+                    <div class="title">Walnut Bruna Forte K2829 AN</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Walnut Bruna Naturale K2830 AN','Images/Walnut Bruna Naturale K2830 AN.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Walnut Bruna Naturale K2830 AN.jpg"></div>
+                    <div class="title">Walnut Bruna Naturale K2830 AN</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Walnut Gasperi Predazzo K5280 AN','Images/Walnut Gasperi Predazzo K5280 AN.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Walnut Gasperi Predazzo K5280 AN.jpg"></div>
+                    <div class="title">Walnut Gasperi Predazzo K5280 AN</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Walnut Tortona 32339 AN','Images/Walnut Tortona 32339 AN.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Walnut Tortona 32339 AN.jpg"></div>
+                    <div class="title">Walnut Tortona 32339 AN</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Walnut Umbra K2818 AN','Images/Walnut Umbra K2818 AN.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Walnut Umbra K2818 AN.jpg"></div>
+                    <div class="title">Walnut Umbra K2818 AN</div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div style="padding:60px 20px 40px 20px; max-width:1050px; margin:auto;">
+            <h1 style="
+margin:0;
+font-family:Poppins,sans-serif;
+font-size:35px;
+font-weight:800;
+line-height:1;
+text-transform:uppercase;
+letter-spacing:-2px;
+color:#000;">
+                WOODline Natural
+
+            </h1>
+        </div>
+
+        <div class="wrapper">
+            <div class="grid">
+
+                <div class="card"
+                    onclick="openModal('Abies Cara K2444 Abies','Images/Abies Cara K2444 Abies.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Abies Cara K2444 Abies.jpg"></div>
+                    <div class="title">Abies Cara K2444 Abies</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Abies Clay K2443 Abies','Images/Abies Clay K2443 Abies.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Abies Clay K2443 Abies.jpg"></div>
+                    <div class="title">Abies Clay K2443 Abies</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Abies Shine K2406 Abies','Images/Abies Shine K2406 Abies.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Abies Shine K2406 Abies.jpg"></div>
+                    <div class="title">Abies Shine K2406 Abies</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Abies Taverna K2665 Abies','Images/Abies Taverna K2665 Abies.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Abies Taverna K2665 Abies.jpg"></div>
+                    <div class="title">Abies Taverna K2665 Abies</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Ash Highland 37769 Ash','Images/Ash Highland 37769 Ash.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Ash Highland 37769 Ash.jpg"></div>
+                    <div class="title">Ash Highland 37769 Ash</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Cherry Piemont 37967 Cherry','Images/Cherry Piemont 37967 Cherry.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Cherry Piemont 37967 Cherry.jpg"></div>
+                    <div class="title">Cherry Piemont 37967 Cherry</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Elm 37965 Elm','Images/Elm 37965 Elm.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Elm 37965 Elm.jpg"></div>
+                    <div class="title">Elm 37965 Elm</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Oak Aviva Balm K2753 Oak','Images/Oak Aviva Balm K2753 Oak.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Aviva Balm K2753 Oak.jpg"></div>
+                    <div class="title">Oak Aviva Balm K2753 Oak</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Oak Aviva Breeze K2754 Oak','Images/Oak Aviva Breeze K2754 Oak.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Aviva Breeze K2754 Oak.jpg"></div>
+                    <div class="title">Oak Aviva Breeze K2754 Oak</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Oak Aviva Dew K2751 Oak','Images/Oak Aviva Dew K2751 Oak.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Aviva Dew K2751 Oak.jpg"></div>
+                    <div class="title">Oak Aviva Dew K2751 Oak</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Oak Aviva Siena K2795 Oak','Images/Oak Aviva Siena K2795 Oak.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Aviva Siena K2795 Oak.jpg"></div>
+                    <div class="title">Oak Aviva Siena K2795 Oak</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Oak Aviva Vernal K2752 Oak','Images/Oak Aviva Vernal K2752 Oak.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Aviva Vernal K2752 Oak.jpg"></div>
+                    <div class="title">Oak Aviva Vernal K2752 Oak</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Oak Cremona Cannolo K2739 OC','Images/Oak Cremona Cannolo K2739 OC.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Cremona Cannolo K2739 OC.jpg"></div>
+                    <div class="title">Oak Cremona Cannolo K2739 OC</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Oak Cremona Cotta K2737 OC','Images/Oak Cremona Cotta K2737 OC.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Cremona Cotta K2737 OC.jpg"></div>
+                    <div class="title">Oak Cremona Cotta K2737 OC</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Oak Cremona Tartufo K2773 Oak','Images/Oak Cremona Tartufo K2773 Oak.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Cremona Tartufo K2773 Oak.jpg"></div>
+                    <div class="title">Oak Cremona Tartufo K2773 Oak</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Oak Cremona Torro K2738 Oak','Images/Oak Cremona Torro K2738 Oak.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Cremona Torro K2738 Oak.jpg"></div>
+                    <div class="title">Oak Cremona Torro K2738 Oak</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Oak ENDgrain Classic K5414 Oak','Images/Oak ENDgrain Classic K5414 Oak.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak ENDgrain Classic K5414 Oak.jpg"></div>
+                    <div class="title">Oak ENDgrain Classic K5414 Oak</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Oak ENDgrain Cognac K5413 Oak','Images/Oak ENDgrain Cognac K5413 Oak.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak ENDgrain Cognac K5413 Oak.jpg"></div>
+                    <div class="title">Oak ENDgrain Cognac K5413 Oak</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Oak ENDgrain Raw K5412 Oak','Images/Oak ENDgrain Raw K5412 Oak.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak ENDgrain Raw K5412 Oak.jpg"></div>
+                    <div class="title">Oak ENDgrain Raw K5412 Oak</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Oak Evoke Classic K4420 Oak','Images/Oak Evoke Classic K4420 Oak.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Evoke Classic K4420 Oak.jpg"></div>
+                    <div class="title">Oak Evoke Classic K4420 Oak</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Oak Evoke Coast K5573 Oak','Images/Oak Evoke Coast K5573 Oak.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Evoke Coast K5573 Oak.jpg"></div>
+                    <div class="title">Oak Evoke Coast K5573 Oak</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Oak Evoke Infinity K2349 Oak','Images/Oak Evoke Infinity K2349 Oak.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Evoke Infinity K2349 Oak.jpg"></div>
+                    <div class="title">Oak Evoke Infinity K2349 Oak</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Oak Evoke Light K2442 Oak','Images/Oak Evoke Light K2442 Oak.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Evoke Light K2442 Oak.jpg"></div>
+                    <div class="title">Oak Evoke Light K2442 Oak</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Oak Evoke Sunset K5574 Oak','Images/Oak Evoke Sunset K5574 Oak.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Evoke Sunset K5574 Oak.jpg"></div>
+                    <div class="title">Oak Evoke Sunset K5574 Oak</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Oak Evoke Trend K4421 Oak','Images/Oak Evoke Trend K4421 Oak.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Evoke Trend K4421 Oak.jpg"></div>
+                    <div class="title">Oak Evoke Trend K4421 Oak</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Oak Sanremo Bronze 34141 Oak','Images/Oak Sanremo Bronze 34141 Oak.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Sanremo Bronze 34141 Oak.jpg"></div>
+                    <div class="title">Oak Sanremo Bronze 34141 Oak</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Oak Sanremo Classic 34140 Oak','Images/Oak Sanremo Classic 34140 Oak.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Sanremo Classic 34140 Oak.jpg"></div>
+                    <div class="title">Oak Sanremo Classic 34140 Oak</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Oak Sanremo Nature 34136 Oak','Images/Oak Sanremo Nature 34136 Oak.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Sanremo Nature 34136 Oak.jpg"></div>
+                    <div class="title">Oak Sanremo Nature 34136 Oak</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Oak Sanremo Sand 34139 Oak','Images/Oak Sanremo Sand 34139 Oak.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Oak Sanremo Sand 34139 Oak.jpg"></div>
+                    <div class="title">Oak Sanremo Sand 34139 Oak</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Stone Ash 34056 Stone','Images/Stone Ash 34056 Stone.jpg','Create elegant interiors with Historic Spruce, combining natural beauty and lasting durability.')">
+                    <div class="img"><img src="Images/Stone Ash 34056 Stone.jpg"></div>
+                    <div class="title">Stone Ash 34056 Stone</div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <div id="stone" class="panel">
+
+        <div class="wrapper">
+            <div class="grid">
+
+
+                <div class="card" onclick="openModal('Stone 001','Images/Calacatta.jpg')">
+                    <div class="img"><img src="Images/Calacatta.jpg"></div>
+                    <div class="title">Stone 001</div>
+                </div>
+
+
+                <div class="card" onclick="openModal('Stone 002','Images/Statuario.jpg')">
+                    <div class="img"><img src="Images/Statuario.jpg"></div>
+                    <div class="title">Stone 002</div>
+                </div>
+
+
+                <div class="card" onclick="openModal('Stone 003','Images/Carrara.jpg')">
+                    <div class="img"><img src="Images/Carrara.jpg"></div>
+                    <div class="title">Stone 003</div>
+                </div>
+
+
+                <div class="card" onclick="openModal('Stone 004','Images/Arabescato.jpg')">
+                    <div class="img"><img src="Images/Arabescato.jpg"></div>
+                    <div class="title">Stone 004</div>
+                </div>
+
+
+                <div class="card" onclick="openModal('Stone 005','Images/Emperador.jpg')">
+                    <div class="img"><img src="Images/Emperador.jpg"></div>
+                    <div class="title">Stone 005</div>
+                </div>
+
+
+                <div class="card" onclick="openModal('Stone 006','Images/Marfil.jpg','blla blla')">
+                    <div class="img"><img src="Images/Marfil.jpg"></div>
+                    <div class="title">Stone 006</div>
+                </div>
+
+
+                <div class="card" onclick="openModal('Stone 007','Images/Pietra.jpg')">
+                    <div class="img"><img src="Images/Pietra.jpg"></div>
+                    <div class="title">Stone 007</div>
+                </div>
+
+
+                <div class="card" onclick="openModal('Stone 008','Images/Dolomite.jpg')">
+                    <div class="img"><img src="Images/Dolomite.jpg"></div>
+                    <div class="title">Stone 008</div>
+                </div>
+
+                <div class="card" onclick="openModal('Stone 009','Images/Taj Mahal.jpg')">
+                    <div class="img"><img src="Images/Taj Mahal.jpg"></div>
+                    <div class="title">Stone 009</div>
+                </div>
+
+                <div class="card" onclick="openModal('Stone 010','Images/Patagonia.jpg')">
+                    <div class="img"><img src="Images/Patagonia.jpg"></div>
+                    <div class="title">Stone 010</div>
+                </div>
+
+                <div class="card" onclick="openModal('Stone 011','Images/Travertino.jpg')">
+                    <div class="img"><img src="Images/Travertino.jpg"></div>
+                    <div class="title">Stone 011</div>
+                </div>
+
+                <div class="card" onclick="openModal('Stone 012','Images/Quartzite.jpg')">
+                    <div class="img"><img src="Images/Quartzite.jpg"></div>
+                    <div class="title">Stone 012</div>
+                </div>
+
+                <div class="card" onclick="openModal('Stone 013','Images/Onyx.jpg')">
+                    <div class="img"><img src="Images/Onyx.jpg"></div>
+                    <div class="title">Stone 013</div>
+                </div>
+
+                <div class="card" onclick="openModal('Stone 014','Images/Terrazzo.jpg')">
+                    <div class="img"><img src="Images/Terrazzo.jpg"></div>
+                    <div class="title">Stone 014</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="fabric" class="panel">
+
+        <div class="wrapper">
+            <div class="grid">
+
+
+                <div class="card" onclick="openModal('Fabric 001','Images/Fabric 001.jpg')">
+                    <div class="img"><img src="Images/Fabric 001.jpg"></div>
+                    <div class="title">Fabric 001</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Fabric 002','Images/Fabric 002.jpg','Fabric material description.')">
+                    <div class="img"><img src="Images/Fabric 002.jpg"></div>
+                    <div class="title">Fabric 002</div>
+                </div>
+
+
+                <div class="card"
+                    onclick="openModal('Fabric 003','Images/Fabric 003.jpg','Fabric material description.')">
+                    <div class="img"><img src="Images/Fabric 003.jpg"></div>
+                    <div class="title">Fabric 003</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Fabric 004','Images/Fabric 004.jpg','Fabric material description.')">
+                    <div class="img"><img src="Images/Fabric 004.jpg"></div>
+                    <div class="title">Fabric 004</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Fabric 005','Images/Fabric 005.jpg','Fabric material description.')">
+                    <div class="img"><img src="Images/Fabric 005.jpg"></div>
+                    <div class="title">Fabric 005</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Fabric 006','Images/Fabric 006.jpg','Fabric material description.')">
+                    <div class="img"><img src="Images/Fabric 006.jpg"></div>
+                    <div class="title">Fabric 006</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Fabric 007','Images/Fabric 007.jpg','Fabric material description.')">
+                    <div class="img"><img src="Images/Fabric 007.jpg"></div>
+                    <div class="title">Fabric 007</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Fabric 008','Images/Fabric 008.jpg','Fabric material description.')">
+                    <div class="img"><img src="Images/Fabric 008.jpg"></div>
+                    <div class="title">Fabric 008</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Fabric 009','Images/Fabric 009.jpg','Fabric material description.')">
+                    <div class="img"><img src="Images/Fabric 009.jpg"></div>
+                    <div class="title">Fabric 009</div>
+                </div>
+
+                <div class="card"
+                    onclick="openModal('Fabric 010','Images/Fabric 010.jpg','Fabric material description.')">
+                    <div class="img"><img src="Images/Fabric 010.jpg"></div>
+                    <div class="title">Fabric 010</div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div id="modal" class="modal" onclick="closeModal()">
+
+            <div class="modal-content" onclick="event.stopPropagation()">
+
+                <div class="close" onclick="closeModal()">✕</div>
+
+                <div class="modal-body">
+                    <div class="modal-img"><img id="modalImg"></div>
+                    <div class="modal-text">
+                        <h2 id="modalTitle"></h2>
+                        <p id="modalDesc"></p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <script>
+
+            function switchTab(id, el) {
+                document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+                el.classList.add("active");
+                document.querySelectorAll(".panel").forEach(p => p.classList.remove("active"));
+                document.getElementById(id).classList.add("active");
+            }
+
+            function openModal(title, img, desc) {
+                document.getElementById("modal").style.display = "flex";
+                document.getElementById("modalImg").src = img;
+                document.getElementById("modalTitle").innerText = title;
+                document.getElementById("modalDesc").innerText = desc;
+            }
+
+            function closeModal() {
+                document.getElementById("modal").style.display = "none";
+            }
+
+        </script>
